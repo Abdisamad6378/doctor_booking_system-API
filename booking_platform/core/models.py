@@ -6,10 +6,16 @@ from django.contrib.auth.models import User
 class Patient(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
-    phone = models.IntegerField(max_length=15 , unique=True)
+    phone = models.CharField(max_length=15 , unique=True)
     address = models.CharField(max_length=50)
     User = models.OneToOneField(User, on_delete= models.CASCADE, related_name='patient')
-    gender = models.CharField(max_length=10 , choices= ("Male", "Female", "Other"))
+    # In core/models.py - Patient model
+    GENDER_CHOICES = [
+    ('Male', 'Male'),
+    ('Female', 'Female'), 
+    ('Other', 'Other'),
+]
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
 
     def __str__(self):
         return self.name
@@ -18,7 +24,7 @@ class Patient(models.Model):
 class Doctor(models.Model):
     Full_name = models.CharField(max_length=30)
     email = models.EmailField(unique=True)
-    phone = models.IntegerField(max_length=15 , unique=True)
+    phone = models.CharField(max_length=15 , unique=True)
     address = models.CharField(max_length=30)
     speciallization = models.CharField(max_length=30)
     Quallification = models.CharField(max_length=20)

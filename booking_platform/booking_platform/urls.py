@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from core.views import PatientViewSet, DoctorViewset, AppointmentViewset
+
+router = DefaultRouter()
+router.register('patients', PatientViewSet)
+router.register('doctors', DoctorViewset)
+router.register('appointments', AppointmentViewset)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('core.urls')),  # All your APIs go through here
+     path('api/', include(router.urls)),
 ]
