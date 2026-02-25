@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from.models import Patient, Doctor , Appointment
 from.serializers import Patientserializer , Doctorserializer , Appointmentserializer
 from rest_framework import viewsets
@@ -8,7 +9,15 @@ from rest_framework import filters
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
     serializer_class = Patientserializer
-    filter_backends = [DjangoFilterBackend , filters.SearchFilters , filters.OrderingFilter]
+    filter_backends = [DjangoFilterBackend , filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['phone','created_at']
     search_fields = ['name', 'phone']
     ordering_fields = ['created_at','name']
+    
+class DoctorViewset(viewsets.ModelViewSet):
+    queryset = Doctor.objects.all()
+    serializer_class = Doctorserializer
+    
+class AppointmentViewset(viewsets.ModelViewSet):
+    queryset = Appointment.objects.all()
+    serializer_class = Appointmentserializer
