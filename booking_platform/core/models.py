@@ -10,6 +10,7 @@ class Patient(models.Model):
     address = models.CharField(max_length=50)
     user = models.OneToOneField(User, on_delete= models.CASCADE, related_name='patient')
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     # In core/models.py - Patient model
     GENDER_CHOICES = [
     ('Male', 'Male'),

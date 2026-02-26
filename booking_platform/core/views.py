@@ -14,10 +14,10 @@ class PatientViewSet(viewsets.ModelViewSet):
     search_fields = ['name', 'phone']
     ordering_fields = ['created_at','name']
     
-class DoctorViewset(viewsets.ModelViewSet):
+class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = Doctorserializer
     
-class AppointmentViewset(viewsets.ModelViewSet):
+class AppointmentViewSet(viewsets.ModelViewSet):
     queryset = Appointment.objects.all()
     serializer_class = Appointmentserializer
