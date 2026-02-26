@@ -8,7 +8,8 @@ class Patient(models.Model):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15 , unique=True)
     address = models.CharField(max_length=50)
-    User = models.OneToOneField(User, on_delete= models.CASCADE, related_name='patient')
+    user = models.OneToOneField(User, on_delete= models.CASCADE, related_name='patient')
+    created_at = models.DateTimeField(auto_now_add=True)
     # In core/models.py - Patient model
     GENDER_CHOICES = [
     ('Male', 'Male'),
@@ -27,7 +28,7 @@ class Doctor(models.Model):
     phone = models.CharField(max_length=15 , unique=True)
     address = models.CharField(max_length=30)
     speciallization = models.CharField(max_length=30)
-    Quallification = models.CharField(max_length=20)
+    Quallification = models.CharField(max_length=50)
     registration_no = models.CharField(max_length=10 , unique=True)
     available_days = models.JSONField()
     slot_duration = models.IntegerField(default=30)
